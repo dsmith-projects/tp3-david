@@ -56,7 +56,45 @@ void crearTarea() {
 }
 
 void asignarMiembroAEquipo() {
-	cout << "TODO > asignar miembro a equipo" << endl;
+	string idMiembro, idEquipo;
+	bool miembroExiste = false;
+	bool equipoExiste = false;
+	vector<Persona>::iterator itPersona;
+	vector<Equipo>::iterator itEquipo;
+
+	do{
+		cout << "Ingrese el id del miembro: " << endl;
+		cin >> idMiembro;
+
+		for(itPersona = vectorPersonas.begin(); itPersona != vectorPersonas.end(); ++itPersona){
+			if ((*itPersona).id == idMiembro) {
+				miembroExiste = true;
+				break;
+			}
+		}
+
+		if(!miembroExiste){
+			cout << "No existe un miembro con ese id. Intente de nuevo" << endl;
+		}
+	}while(!miembroExiste);
+
+	do{
+		cout << "Ingrese el id del miembro: " << endl;
+		cin >> idEquipo;
+
+		for(itEquipo = vectorEquipos.begin(); itEquipo != vectorEquipos.end(); ++itEquipo){
+			if ((*itEquipo).id == idEquipo) {
+				equipoExiste = true;
+				break;
+			}
+		}
+
+		if(!equipoExiste){
+			cout << "No existe un equipo con ese id. Intente de nuevo" << endl;
+		}
+	}while(!equipoExiste);
+
+
 	cout << endl;
 }
 
