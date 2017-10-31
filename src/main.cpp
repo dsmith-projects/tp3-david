@@ -55,6 +55,11 @@ void crearTarea() {
 	cout << endl;
 }
 
+void asignarMiembroAEquipo() {
+	cout << "TODO > asignar miembro a equipo" << endl;
+	cout << endl;
+}
+
 void asignarTareaAMiembro() {
 	cout << "TODO > asignar tarea a persona" << endl;
 	cout << endl;
@@ -64,8 +69,32 @@ void mostrarEquipos() {
 	vector<Equipo>::iterator iteradorEquipo;
 
 	for(iteradorEquipo = vectorEquipos.begin(); iteradorEquipo != vectorEquipos.end(); ++iteradorEquipo) {
-			cout << (*iteradorEquipo).id << endl;
+		cout << (*iteradorEquipo).id << endl;
 	}
+}
+
+void mostrarMiembros() {
+	vector<Persona>::iterator iteradorPersona;
+
+	cout << ">>> LISTADO DE MIEMBROS:\n" << endl;
+	for(iteradorPersona = vectorPersonas.begin(); iteradorPersona != vectorPersonas.end(); ++iteradorPersona) {
+		cout << "Id del miembro: " << (*iteradorPersona).id << endl;
+		cout << "Nombre: " << (*iteradorPersona).nombre << endl;
+		cout << "Apellido: " << (*iteradorPersona).apellido << endl;
+		cout << "Carga máxima: " << (*iteradorPersona).cargaMax << endl;
+		cout << "Carga actual: " << (*iteradorPersona).cargaActual << endl;
+		cout << endl;
+	}
+}
+
+void mostrarRequerimientos() {
+	cout << "TODO > asignar tarea a persona" << endl;
+	cout << endl;
+}
+
+void mostrarTareas() {
+	cout << "TODO > asignar tarea a persona" << endl;
+	cout << endl;
 }
 
 void desplegarMenu() {
@@ -74,10 +103,13 @@ void desplegarMenu() {
 	cout << "2. Crear un miembro" << endl;
 	cout << "3. Crear un requerimiento" << endl;
 	cout << "4. Crear una tarea" << endl;
-	cout << "5. Asignar una tarea a un miembro de un equipo" << endl;
-	cout << "6. Mostrar equipos" << endl;
-	cout << "7. YYYY" << endl;
-	cout << "8. Salir" << endl;
+	cout << "5. Asignar miembro a un equipo" << endl;
+	cout << "6. Asignar una tarea a un miembro de un equipo" << endl;
+	cout << "7. Mostrar equipos" << endl;
+	cout << "8. Mostrar miembros" << endl;
+	cout << "9. Mostrar requerimientos" << endl;
+	cout << "10. Mostrar tareas" << endl;
+	cout << "11. Salir" << endl;
 	cout << "\n" << endl;
 }
 
@@ -129,23 +161,47 @@ int main()
 					break;
 				}
 				case 5: {
+					cout << ">>> ASIGNAR UN MIEMBRO A UN EQUIPO\n" << endl;
+					asignarMiembroAEquipo();
+					cout << endl;
+					break;
+				}
+				case 6: {
 					cout << ">>> ASIGNAR UNA TAREA A UN MIEMBRO DE UN EQUIPO\n" << endl;
 					asignarTareaAMiembro();
 					cout << endl;
 					break;
 				}
-				case 6: {
+				case 7: {
 					cout << ">>> MOSTRAR EQUIPOS\n" << endl;
 					mostrarEquipos();
 					cout << endl;
 					break;
 				}
-				case 7: { // en caso de necesitar más métodos
+				case 8: {
+					cout << ">>> MOSTRAR MIEMBROS\n" << endl;
+					mostrarMiembros();
+					cout << endl;
+					break;
+				}
+				case 9: {
+					cout << ">>> MOSTRAR REQUERIMIENTOS\n" << endl;
+					mostrarRequerimientos();
+					cout << endl;
+					break;
+				}
+				case 10: {
+					cout << ">>> MOSTRAR TAREAS\n" << endl;
+					mostrarTareas();
+					cout << endl;
+					break;
+				}
+				case 12: { // en caso de necesitar más métodos
 					cout << "Prueba case 7: \n" << endl;
 					cout << endl;
 					break;
 				}
-				case 8: {
+				case 11: {
 					salir = true;
 					cout << "Usted ha salido del programa\n" << endl;
 					break;
