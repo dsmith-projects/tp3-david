@@ -17,6 +17,8 @@
 using namespace std;
 
 vector<Equipo> vectorEquipos;
+vector<Persona> vectorPersonas;
+vector<Requerimiento> vectorRequerimietos;
 
 void crearEquipo() {
 
@@ -28,19 +30,34 @@ void crearEquipo() {
 }
 
 void crearMiembro() {
-	cout << "TODO > crear miembro" << endl;
+	string idMiembro, nombre, apellido;
+	double cargaMax = 0.0;
+
+	cout << "Ingrese el id del miembro: ";
+	cin >> idMiembro;
+	cout << "Nombre: ";
+	cin >> nombre;
+	cout << "Apellido: ";
+	cin >> apellido;
+	cout << "Carga máxima en horas: ";
+	cin >> cargaMax;
+
+	vectorPersonas.push_back(Persona(idMiembro, nombre, apellido, cargaMax));
 }
 
 void crearRequerimiento() {
 	cout << "TODO > crear requerimiento" << endl;
+	cout << endl;
 }
 
 void crearTarea() {
 	cout << "TODO > crear tarea" << endl;
+	cout << endl;
 }
 
 void asignarTareaAMiembro() {
 	cout << "TODO > asignar tarea a persona" << endl;
+	cout << endl;
 }
 
 void mostrarEquipos() {
@@ -66,40 +83,11 @@ void desplegarMenu() {
 
 int main()
 {
-	//    vector<Equipo> vecquipo;
-	//    vector<Requerimiento> vecrequerimieto;
-	    string id;
+//	    e.agregarPersona(&p);
+//	    e.agregarPersona(&p2);
+//	    e.agregarPersona(&p3);
 
-	    std::cout<<"\tCREAR EQUIPO\n\n";
-	    std::cout<<"Id:";
-	    //std::cin>>id;
-
-	    Equipo e = Equipo("e1");
-
-	    std::cout<<"\n\nId: "<<e.id;
-
-	    string nombre, apellido;
-	    double cargaMax=0.0;
-	    std::cout<<"\tCREAR PERSONA\n\n";
-	    /*std::cout<<"Id: "; std::cin>>id;
-	    std::cout<<"Nombre: "; std::cin>>id;
-	    std::cout<<"Apellido: "; std::cin>>id;*/
-
-
-	    Persona p = Persona("id1", "nombre1", "apellido1", 85.2);
-	    std::cout<<"\n\nCarga : "<<p.cargaActual<<std::endl;
-	    p.agregarCargaActual(20);
-	    std::cout<<"\n\nCarga : "<<p.cargaActual<<std::endl;
-	    p.agregarCargaActual(5.2);
-	    std::cout<<"\n\nCarga : "<<p.cargaActual<<std::endl;
-
-	    Persona p2 = Persona("id2", "nombre2", "apellido2", 4.2);
-	    Persona p3 = Persona("id3", "nombre3", "apellido3", 85.2);
-	    e.agregarPersona(&p);
-	    e.agregarPersona(&p2);
-	    e.agregarPersona(&p3);
-
-	    e.imprimirMiembros();
+//	    e.imprimirMiembros();
 	//    std::cout<<"\n miembros "<<&e.miembros;
 	//    std::cout<<e.miembros[0]->nombre;
 	//    std::cout<<"\n miembros[0]"<<&e.miembros[0];
@@ -113,41 +101,48 @@ int main()
 	    		desplegarMenu();
 	    		cout << "Ingrese una opcion del menu: ";
 	    		cin >> opcion;
-	    		cout << "\n" << endl;
+	    		cout << endl;
 
 	    		switch (opcion) {
 				case 1: {
-					cout << ">>> CREAR UN NUEVO EQUIPO" << endl;
+					cout << ">>> CREAR UN NUEVO EQUIPO\n" << endl;
 					crearEquipo();
+					cout << endl;
 					break;
 				}
 				case 2: {
-					cout << ">>> CREAR UN NUEVO MIEMBRO" << endl;
+					cout << ">>> CREAR UN NUEVO MIEMBRO\n" << endl;
 					crearMiembro();
+					cout << endl;
 					break;
 				}
 				case 3: {
-					cout << ">>> CREAR UN REQUERIMIENTO" << endl;
+					cout << ">>> CREAR UN REQUERIMIENTO\n" << endl;
 					crearRequerimiento();
+					cout << endl;
 					break;
 				}
 				case 4: {
-					cout << ">>> CREAR UNA NUEVA TAREA" << endl;
+					cout << ">>> CREAR UNA NUEVA TAREA\n" << endl;
 					crearTarea();
+					cout << endl;
 					break;
 				}
 				case 5: {
-					cout << ">>> ASIGNAR UNA TAREA A UN MIEMBRO DE UN EQUIPO" << endl;
+					cout << ">>> ASIGNAR UNA TAREA A UN MIEMBRO DE UN EQUIPO\n" << endl;
 					asignarTareaAMiembro();
+					cout << endl;
 					break;
 				}
 				case 6: {
-					cout << ">>> MOSTRAR EQUIPOS " << endl;
+					cout << ">>> MOSTRAR EQUIPOS\n" << endl;
 					mostrarEquipos();
+					cout << endl;
 					break;
 				}
 				case 7: { // en caso de necesitar más métodos
-					cout << "Prueba case 7: " << endl;
+					cout << "Prueba case 7: \n" << endl;
+					cout << endl;
 					break;
 				}
 				case 8: {
