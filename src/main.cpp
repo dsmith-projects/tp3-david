@@ -16,20 +16,28 @@
 
 using namespace std;
 
+/*! Variables globales para guardar equipos, personas y requerimientos  */
 vector<Equipo> vectorEquipos;
 vector<Persona> vectorPersonas;
 vector<Requerimiento> vectorRequerimietos;
 
+/**
+ * Método que crea un equipo nuevo y lo agrega al vector de equipos
+ */
 void crearEquipo() {
-
+	/*! Variables para almacenar los datos del equipo nuevo  */
 	string id;
 	cout << "Ingrese el id del equipo: ";
 	cin >> id;
-	//Equipo e = Equipo(id);
+
 	vectorEquipos.push_back(Equipo(id));
 }
 
-void crearMiembro() {
+/**
+ * Método que crea un miembro nuevo y lo agrega al vector de miembro
+ */
+int crearMiembro() {
+	/*! Variables para almacenar los datos del nuevo miembro */
 	string idMiembro, nombre, apellido;
 	double cargaMax = 0.0;
 
@@ -42,15 +50,15 @@ void crearMiembro() {
 	cout << "Carga máxima en horas: ";
 	cin >> cargaMax;
 
+	/*! Se agrega el miembro al vector */
 	Persona p = Persona(idMiembro, nombre, apellido, cargaMax);
 	vectorPersonas.push_back(p);
 
+	/*! Variables para decidir si se agrega el miembro al equipo  */
 	bool ingresoCorrecto = true;
-	bool equipoExiste = false;
 	int opcion = 2;
-	string idEquipo;
-	vector<Equipo>::iterator itEquipo;
 
+	/*! Condición y ciclo para decidir si se agrega el miembro al equipo  */
 	if (!vectorEquipos.empty()) {
 		do {
 			cout << "¿Desea agregar el miembro a un equipo? 1. sí / 2. no ";
@@ -59,42 +67,36 @@ void crearMiembro() {
 				ingresoCorrecto = false;
 				cout << "\bEntrada incorrecta. Intente de nuevo: " << endl;
 			} else {
-				do {
-					cout << "Ingrese el id del equipo: " << endl;
-					cin >> idEquipo;
-
-					for(itEquipo = vectorEquipos.begin(); itEquipo != vectorEquipos.end(); ++itEquipo) {
-						if ((*itEquipo).id == idEquipo) {
-							equipoExiste = true;
-							(*itEquipo).agregarPersona(&p);
-							cout << ">>> El miembro fue agregado correctamente al equipo.\n" << endl;
-							(&p)->miembroTieneEquipo();
-							break;
-						}
-					}
-
-					if(!equipoExiste) {
-						cout << "No existe un equipo con ese id. Intente de nuevo" << endl;
-					}
-				}while(!equipoExiste);
+				return opcion;
 			}
 		}while(!ingresoCorrecto);
 	} else {
 		cout << "No hay equipos, por lo que el miembro no se puede agregar a ningún equipo" << endl;
 	}
+	return opcion;
 }
 
+/**
+ * crear requerimiento
+ */
 void crearRequerimiento() {
 	cout << "TODO > crear requerimiento" << endl;
 	cout << endl;
 }
 
+/**
+ * crear tarea
+ */
 void crearTarea() {
 	cout << "TODO > crear tarea" << endl;
 	cout << endl;
 }
 
+/**
+ * Método que verifica que el miembro y equipo existan y de ser así agrega el miembro al vector de miembros del equipo
+ */
 void asignarMiembroAEquipo() {
+	/*! Variables e iteradores para agregar miembro a equipo */
 	string idMiembro, idEquipo;
 	bool miembroExiste = false;
 	bool equipoExiste = false;
@@ -102,13 +104,13 @@ void asignarMiembroAEquipo() {
 	vector<Equipo>::iterator itEquipo;
 	Persona *p;
 
+	/*! Método que solicita el id del miembro y verfifica que exista.  */
 	do{
 		cout << "Ingrese el id del miembro: " << endl;
 		cin >> idMiembro;
 
 		for(itPersona = vectorPersonas.begin(); itPersona != vectorPersonas.end(); ++itPersona){
-//			cout << "(*itPersona).id: " << (*itPersona).id << endl;
-//			cout << "idMiembro: " << idMiembro << endl;
+
 			if ((*itPersona).id == idMiembro) {
 				p = &(*itPersona);
 				miembroExiste = true;
@@ -121,6 +123,7 @@ void asignarMiembroAEquipo() {
 		}
 	}while(!miembroExiste);
 
+	/*! Método que solicita el id del equipo y verfifica que exista. Luego agrega el miembro a ese equipo */
 	do{
 		cout << "Ingrese el id del equipo: " << endl;
 		cin >> idEquipo;
@@ -144,11 +147,17 @@ void asignarMiembroAEquipo() {
 	cout << endl;
 }
 
+/**
+ * ... text ...
+ */
 void asignarTareaAMiembro() {
 	cout << "TODO > asignar tarea a persona" << endl;
 	cout << endl;
 }
 
+/**
+ * Método que despliega los equipos. Usa un iterador para recorrer el vector
+ */
 void mostrarEquipos() {
 	vector<Equipo>::iterator iteradorEquipo;
 
@@ -158,6 +167,9 @@ void mostrarEquipos() {
 	}
 }
 
+/**
+ * Muestra el sub menú que se despliega con la opción 8 del menú. Da opciones para visualizar los miembros creados
+ */
 int mostrarSubmenu() {
 	int opcion = 1;
 	bool ingresoCorrecto = true;
@@ -179,6 +191,9 @@ int mostrarSubmenu() {
 	return opcion;
 }
 
+/**
+ * Muestra todos los miembros registrados en el sistema
+ */
 void mostrarMiembros() {
 	vector<Persona>::iterator iteradorPersona;
 
@@ -193,6 +208,9 @@ void mostrarMiembros() {
 	}
 }
 
+/**
+ * Muestra los miembros con desglose por equipo al que pertenece cada miembro
+ */
 void mostrarMiembrosPorEquipo() {
 	string idEquipo;
 	bool equipoExiste = false;
@@ -216,6 +234,9 @@ void mostrarMiembrosPorEquipo() {
 	}while(!equipoExiste);
 }
 
+/**
+ * Muestra los miembros que han sido creados pero no perteneces a ningún equipo
+ */
 void mostrarMiembrosSinEquipo() {
 	vector<Persona>::iterator iteradorPersona;
 
@@ -227,16 +248,25 @@ void mostrarMiembrosSinEquipo() {
 	}
 }
 
+/**
+ * ... text ...
+ */
 void mostrarRequerimientos() {
 	cout << "TODO > asignar tarea a persona" << endl;
 	cout << endl;
 }
 
+/**
+ * ... text ...
+ */
 void mostrarTareas() {
 	cout << "TODO > asignar tarea a persona" << endl;
 	cout << endl;
 }
 
+/**
+ * Despliega el menú principal de la aplicación que muestra todas las opciones del programa
+ */
 void desplegarMenu() {
 	cout << "\t*** MENU PRINCIPAL ***\n" << endl;
 	cout << "1. Crear un equipo" << endl;
@@ -253,6 +283,9 @@ void desplegarMenu() {
 	cout << "\n" << endl;
 }
 
+/**
+ * Método main. Punto de partida del programa. Muestra el menú y permite al usuario escoger diferentes opciones
+ */
 int main()
 {
 	    /* Variables para la ejecucion del menu */
@@ -275,7 +308,10 @@ int main()
 				}
 				case 2: {
 					cout << ">>> CREAR UN NUEVO MIEMBRO\n" << endl;
-					crearMiembro();
+					int numOp = crearMiembro();
+					if(numOp == 1) {
+						asignarMiembroAEquipo();
+					}
 					cout << endl;
 					break;
 				}

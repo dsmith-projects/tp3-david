@@ -11,27 +11,42 @@
 
 using namespace std;
 
+/**
+ * Constructor de equipo por defecto
+ */
 Equipo::Equipo()
 {
     //ctor
 }
 
+/**
+ * Constructor que inicializa un nuevo objeto de tipo equipo recibiendo el id como parámetro
+ */
 Equipo::Equipo(string id)
 :   id(id)
 {
 
 }
 
+/**
+ * Destructor
+ */
 Equipo::~Equipo()
 {
     //dtor
 }
 
+/**
+ * Método que agrega un miembro a un equipo
+ */
 void Equipo::agregarPersona(Persona* persona)
 {
     miembros.push_back(persona);
 }
 
+/**
+ * Método que recorre todos los miembros de un equipo e imprime sus datos
+ */
 void Equipo::imprimirMiembros()
 {
     cout << "\n\n     Equipo: " << this->id << " (Miembros) \n\n";
@@ -48,6 +63,9 @@ void Equipo::imprimirMiembros()
     }
 }
 
+/**
+ * Sobrecarga del operador << para desplegar los datos de un miembro
+ */
 ostream& operator<< (ostream& salida, Equipo equipo) {
 	salida << "EQUIPO: " << equipo.id << endl;
 

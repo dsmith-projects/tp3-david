@@ -30,7 +30,7 @@ class Persona
         string id;
         string nombre;
         string apellido;
-        double cargaMax=0.0;
+        double cargaMax;
         double cargaActual;
         bool tieneEquipo;
     protected:
