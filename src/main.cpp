@@ -13,6 +13,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -265,6 +266,38 @@ void mostrarTareas() {
 }
 
 /**
+ * Plantilla que ordena los miembros por nombre
+ */
+template<class T, class V>
+bool ordernarMiembrosPorNombre(const T& obj1, const V& obj2) {
+	return obj1.nombre < obj2.nombre;
+}
+
+/**
+ * Plantilla que ordena los miembros por apellido
+ */
+template<class T, class V>
+bool ordernarMiembrosPorApellido(const T& obj1, const V& obj2) {
+	return obj1.apellido < obj2.apellido;
+}
+
+/**
+ * Plantilla que ordena los miembros por carga máxima
+ */
+template<class T, class V>
+bool ordernarMiembrosPorCargaMax(const T& obj1, const V& obj2) {
+	return obj1.cargaMax < obj2.cargaMax;
+}
+
+/**
+ * Plantilla que ordena los miembros por carga actual
+ */
+template<class T, class V>
+bool ordernarMiembrosPorCargaActual(const T& obj1, const V& obj2) {
+	return obj1.cargaActual < obj2.cargaActual;
+}
+
+/**
  * Despliega el menú principal de la aplicación que muestra todas las opciones del programa
  */
 void desplegarMenu() {
@@ -279,7 +312,11 @@ void desplegarMenu() {
 	cout << "8. Mostrar miembros" << endl;
 	cout << "9. Mostrar requerimientos" << endl;
 	cout << "10. Mostrar tareas" << endl;
-	cout << "11. Salir" << endl;
+	cout << "11. Ordenar miembros por nombre" << endl;
+	cout << "12. Ordenar miembros por apellido" << endl;
+	cout << "13. Ordenar miembros por carga máxima" << endl;
+	cout << "14. Ordenar miembros por carga actual" << endl;
+	cout << "15. Salir" << endl;
 	cout << "\n" << endl;
 }
 
@@ -375,12 +412,31 @@ int main()
 					cout << endl;
 					break;
 				}
-				case 12: { // en caso de necesitar más métodos
-					cout << "Prueba case 7: \n" << endl;
+				case 11: {
+					cout << ">>> ORDENAR MIEMBROS POR NOMBRE\n" << endl;
+					sort(vectorPersonas.begin(), vectorPersonas.end(), ordernarMiembrosPorNombre<Persona,Persona>);
 					cout << endl;
 					break;
 				}
-				case 11: {
+				case 12: {
+					cout << ">>> ORDENAR MIEMBROS POR APELLIDO\n" << endl;
+					sort(vectorPersonas.begin(), vectorPersonas.end(), ordernarMiembrosPorApellido<Persona,Persona>);
+					cout << endl;
+					break;
+				}
+				case 13: {
+					cout << ">>> ORDENAR MIEMBROS POR CARGA MÁXIMA\n" << endl;
+					sort(vectorPersonas.begin(), vectorPersonas.end(), ordernarMiembrosPorCargaMax<Persona,Persona>);
+					cout << endl;
+					break;
+				}
+				case 14: {
+					cout << ">>> ORDENAR MIEMBROS POR CARGA ACTUAL\n" << endl;
+					sort(vectorPersonas.begin(), vectorPersonas.end(), ordernarMiembrosPorCargaActual<Persona,Persona>);
+					cout << endl;
+					break;
+				}
+				case 15: {
 					salir = true;
 					cout << "Usted ha salido del programa\n" << endl;
 					break;
