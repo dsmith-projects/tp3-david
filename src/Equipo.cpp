@@ -34,19 +34,17 @@ void Equipo::agregarPersona(Persona* persona)
 
 void Equipo::imprimirMiembros()
 {
-    std::cout<<"\n\n     Equipo: "<<this->id<<" (Miembros) \n\n";
+    cout << "\n\n     Equipo: " << this->id << " (Miembros) \n\n";
     vector<Persona*>::iterator iter;
-    //int i=54;
-    //std::cout<<"\n"<<i;
-    //iter=this->miembros.begin();
-    //std::cout<<"\nIter "<<&iter;
-    for(iter=this->miembros.begin(); iter!=miembros.end(); ++iter)
+
+    for(iter = this->miembros.begin(); iter != this->miembros.end(); ++iter)
     {
-        std::cout<<"   Nombre: "<<(*iter)->nombre
-                 <<"\n   Apellido: "<<(*iter)->apellido
-                 <<"\n   Carga Maxima: "<<(*iter)->cargaMax
-                 <<"\n   Carga Actual: "<<(*iter)->cargaActual
-                 <<std::endl<<std::endl;
+        cout << "   Id: " << (*iter)->id
+                 << "\n   Nombre: " << (*iter)->nombre
+				 << "\n   Apellido: "<< (*iter)->apellido
+                 << "\n   Carga Maxima: " << (*iter)->cargaMax
+                 << "\n   Carga Actual: " << (*iter)->cargaActual
+                 << "\n" << endl;
     }
 }
 

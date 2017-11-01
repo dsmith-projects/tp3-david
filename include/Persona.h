@@ -23,13 +23,16 @@ class Persona
         virtual ~Persona();
 
         void agregarCargaActual(double);
+        void miembroTieneEquipo();
+
+        friend ostream& operator<< (ostream&, Persona);
 
         string id;
         string nombre;
         string apellido;
         double cargaMax=0.0;
-        double cargaActual=0.0;
-
+        double cargaActual;
+        bool tieneEquipo;
     protected:
 
     private:

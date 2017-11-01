@@ -42,7 +42,46 @@ void crearMiembro() {
 	cout << "Carga máxima en horas: ";
 	cin >> cargaMax;
 
-	vectorPersonas.push_back(Persona(idMiembro, nombre, apellido, cargaMax));
+	Persona p = Persona(idMiembro, nombre, apellido, cargaMax);
+	vectorPersonas.push_back(p);
+
+	bool ingresoCorrecto = true;
+	bool equipoExiste = false;
+	int opcion = 2;
+	string idEquipo;
+	vector<Equipo>::iterator itEquipo;
+
+	if (!vectorEquipos.empty()) {
+		do {
+			cout << "¿Desea agregar el miembro a un equipo? 1. sí / 2. no ";
+			cin >> opcion;
+			if(opcion != 1 && opcion != 2) {
+				ingresoCorrecto = false;
+				cout << "\bEntrada incorrecta. Intente de nuevo: " << endl;
+			} else {
+				do {
+					cout << "Ingrese el id del equipo: " << endl;
+					cin >> idEquipo;
+
+					for(itEquipo = vectorEquipos.begin(); itEquipo != vectorEquipos.end(); ++itEquipo) {
+						if ((*itEquipo).id == idEquipo) {
+							equipoExiste = true;
+							(*itEquipo).agregarPersona(&p);
+							cout << ">>> El miembro fue agregado correctamente al equipo.\n" << endl;
+							(&p)->miembroTieneEquipo();
+							break;
+						}
+					}
+
+					if(!equipoExiste) {
+						cout << "No existe un equipo con ese id. Intente de nuevo" << endl;
+					}
+				}while(!equipoExiste);
+			}
+		}while(!ingresoCorrecto);
+	} else {
+		cout << "No hay equipos, por lo que el miembro no se puede agregar a ningún equipo" << endl;
+	}
 }
 
 void crearRequerimiento() {
@@ -91,6 +130,7 @@ void asignarMiembroAEquipo() {
 				equipoExiste = true;
 				(*itEquipo).agregarPersona(p);
 				cout << ">>> El miembro fue agregado correctamente al equipo.\n" << endl;
+				p->miembroTieneEquipo();
 				break;
 			}
 		}
@@ -118,6 +158,27 @@ void mostrarEquipos() {
 	}
 }
 
+int mostrarSubmenu() {
+	int opcion = 1;
+	bool ingresoCorrecto = true;
+	cout << "\nSeleccione una opción:\n" << endl;
+	cout << "1. Mostrar todos los miembros sin indicar el equipo al que pertenece" << endl;
+	cout << "2. Mostrar todos los miembros por equipo" << endl;
+	cout << "3. Mostrar solo los miembros de un equipo. Debe ingresar el id del equipo" << endl;
+	cout << "4. Mostrar solo los miembros que no pertenecen a ningún equipo" << endl;
+
+	do {
+		cout << "Opción: " << endl;
+		cin >> opcion;
+		if(opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4) {
+			ingresoCorrecto = false;
+			cout << "\bEntrada incorrecta. Intente de nuevo: " << endl;
+		}
+	} while(!ingresoCorrecto);
+
+	return opcion;
+}
+
 void mostrarMiembros() {
 	vector<Persona>::iterator iteradorPersona;
 
@@ -128,6 +189,40 @@ void mostrarMiembros() {
 		cout << "Apellido: " << (*iteradorPersona).apellido << endl;
 		cout << "Carga máxima: " << (*iteradorPersona).cargaMax << endl;
 		cout << "Carga actual: " << (*iteradorPersona).cargaActual << endl;
+		cout << endl;
+	}
+}
+
+void mostrarMiembrosPorEquipo() {
+	string idEquipo;
+	bool equipoExiste = false;
+	vector<Equipo>::iterator itEquipo;
+
+	do{
+		cout << "Ingrese el id del equipo: " << endl;
+		cin >> idEquipo;
+
+		for(itEquipo = vectorEquipos.begin(); itEquipo != vectorEquipos.end(); ++itEquipo){
+			if ((*itEquipo).id == idEquipo) {
+				equipoExiste = true;
+				(*itEquipo).imprimirMiembros();
+				break;
+			}
+		}
+
+		if(!equipoExiste){
+			cout << "No existe un equipo con ese id. Intente de nuevo" << endl;
+		}
+	}while(!equipoExiste);
+}
+
+void mostrarMiembrosSinEquipo() {
+	vector<Persona>::iterator iteradorPersona;
+
+	for(iteradorPersona = vectorPersonas.begin(); iteradorPersona != vectorPersonas.end(); ++iteradorPersona) {
+		if(!(*iteradorPersona).tieneEquipo) {
+			cout << (*iteradorPersona) << endl;
+		}
 		cout << endl;
 	}
 }
@@ -160,15 +255,6 @@ void desplegarMenu() {
 
 int main()
 {
-//	    e.agregarPersona(&p);
-//	    e.agregarPersona(&p2);
-//	    e.agregarPersona(&p3);
-
-//	    e.imprimirMiembros();
-	//    std::cout<<"\n miembros "<<&e.miembros;
-	//    std::cout<<e.miembros[0]->nombre;
-	//    std::cout<<"\n miembros[0]"<<&e.miembros[0];
-
 	    /* Variables para la ejecucion del menu */
 	    	bool salir = false; // Bandera que indica el momento de parada
 	    	int opcion = 0; // Entero ingresado por el usuario para la seleccion una escoger una opcion del menu
@@ -225,7 +311,19 @@ int main()
 				}
 				case 8: {
 					cout << ">>> MOSTRAR MIEMBROS\n" << endl;
-					mostrarMiembros();
+					int submenu = mostrarSubmenu();
+					if(submenu == 1){
+						mostrarMiembros();
+					}
+					if(submenu == 2){
+						mostrarEquipos();
+					}
+					if(submenu == 3){
+						mostrarMiembrosPorEquipo();
+					}
+					if(submenu == 4){
+						mostrarMiembrosSinEquipo();
+					}
 					cout << endl;
 					break;
 				}

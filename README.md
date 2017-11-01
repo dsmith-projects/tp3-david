@@ -14,12 +14,14 @@ Menú Principal
 
 Crear un menú con las siguientes opciones
 
-(#1) -Crear equipo 
-(#2) -Crear miembro 
-	Después de creado, preguntar si desea agregarlo a algún equipo
-(#3) -Crear requerimiento 
+(#1) -Crear equipo > LISTO 
+	-Validar que no se puedan crear duplicados > PENDIENTE 
+(#2) -Crear miembro > LISTO
+	-Validar que no se puedan crear duplicados > PENDIENTE
+	-Después de creado, preguntar si desea agregarlo a algún equipo > PENDIENTE
+(#3) -Crear requerimiento > LISTO
 	-preguntar si desea crearle una tarea al requerimiento
-(#4) -Crear tarea 
+(#4) -Crear tarea > LISTO
 	-preguntar a cuál requerimiento está relacionada, digitar el id del requerimiento
 	-pedir todos los datos de una tarea
 	Después de creada:
@@ -27,13 +29,13 @@ Crear un menú con las siguientes opciones
 	-preguntar si es dependiente de otra u otras tareas. Mostrar tareas y escoger una. Repetir hasta que el usuario lo desee
 	-preguntar si desea asignarla a una persona
 
-(#5) -Asignar un miembro a un equipo
+(#5) -Asignar un miembro a un equipo > LISTO
 (#6) -Asignar tareas a usuarios: muestra todas las tareas, el usuario escoge una. Muestra todos los miembros, el usuario escoge una y la asigna 
 
-(#7) -Mostrar equipos 
-	-Listar todos los equipos creados en el sistema > mostrar el número de miembros???
+(#7) -Mostrar equipos > LISTO
+	-Listar todos los equipos creados en el sistema y cada uno de sus miembros > LISTO
 (#8) -Mostrar miembros:	preguntar si desea mostrar:
-	-todos los miembros de todos los equipos > mostrar al lado o en paréntesis el equipo al que pertenece
+	-todos los miembros de todos los equipos > LISTO mostrar al lado o en paréntesis el equipo al que pertenece > PENDIENTE
 	-solo los miembros según el id del equipo
 	-los miembros que no tienen equipo
 	
