@@ -25,8 +25,9 @@ class Equipo
         virtual ~Equipo();
 
         void agregarPersona(Persona* persona);
-
         void imprimirMiembros();
+
+        friend ostream& operator<< (ostream&, Equipo);
 
         string id;
         vector<Persona*> miembros;

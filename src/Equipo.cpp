@@ -50,5 +50,20 @@ void Equipo::imprimirMiembros()
     }
 }
 
+ostream& operator<< (ostream& salida, Equipo equipo) {
+	salida << "EQUIPO: " << equipo.id << endl;
+
+	vector<Persona*>::iterator iter;
+
+	for(iter = equipo.miembros.begin(); iter != equipo.miembros.end(); ++iter) {
+		salida << "\n   Nombre: " << (*iter)->nombre
+				 <<"\n   Apellido: "<<(*iter)->apellido
+				 <<"\n   Carga Máxima: "<<(*iter)->cargaMax
+				 <<"\n   Carga Actual: "<<(*iter)->cargaActual
+				 << endl;
+	}
+
+	return salida;
+}
 
 

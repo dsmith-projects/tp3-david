@@ -61,13 +61,17 @@ void asignarMiembroAEquipo() {
 	bool equipoExiste = false;
 	vector<Persona>::iterator itPersona;
 	vector<Equipo>::iterator itEquipo;
+	Persona *p;
 
 	do{
 		cout << "Ingrese el id del miembro: " << endl;
 		cin >> idMiembro;
 
 		for(itPersona = vectorPersonas.begin(); itPersona != vectorPersonas.end(); ++itPersona){
+//			cout << "(*itPersona).id: " << (*itPersona).id << endl;
+//			cout << "idMiembro: " << idMiembro << endl;
 			if ((*itPersona).id == idMiembro) {
+				p = &(*itPersona);
 				miembroExiste = true;
 				break;
 			}
@@ -79,12 +83,14 @@ void asignarMiembroAEquipo() {
 	}while(!miembroExiste);
 
 	do{
-		cout << "Ingrese el id del miembro: " << endl;
+		cout << "Ingrese el id del equipo: " << endl;
 		cin >> idEquipo;
 
 		for(itEquipo = vectorEquipos.begin(); itEquipo != vectorEquipos.end(); ++itEquipo){
 			if ((*itEquipo).id == idEquipo) {
 				equipoExiste = true;
+				(*itEquipo).agregarPersona(p);
+				cout << ">>> El miembro fue agregado correctamente al equipo.\n" << endl;
 				break;
 			}
 		}
@@ -107,7 +113,8 @@ void mostrarEquipos() {
 	vector<Equipo>::iterator iteradorEquipo;
 
 	for(iteradorEquipo = vectorEquipos.begin(); iteradorEquipo != vectorEquipos.end(); ++iteradorEquipo) {
-		cout << (*iteradorEquipo).id << endl;
+		//cout << ">>> Id del equipo: " << (*iteradorEquipo).id << endl;
+		cout << (*iteradorEquipo) << endl;
 	}
 }
 
